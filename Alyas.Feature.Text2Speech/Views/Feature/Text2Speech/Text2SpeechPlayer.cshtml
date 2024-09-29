@@ -1,0 +1,35 @@
+@model Alyas.Feature.Text2Speech.Models.Text2SpeechModel
+
+@{
+    var readTime = Model.ReadTime + " min read";
+}
+
+@if (!string.IsNullOrEmpty(Model.Text))
+{
+    <div class="d-flex align-items-center justify-content-start gap-3 flex-wrap no-print" style="padding: 15px; border-radius: 10px;">
+    
+        <!-- Read Time Section -->
+        <div class="d-flex align-items-center fw-normal order-first">
+            <span class="pe-2 text-nowrap text-muted" id="readTime" style="font-size: 14px;">
+                <i class="fa fa-clock pe-1"></i> @readTime
+            </span>
+        </div>
+    
+        <!-- Audio Player Section -->
+        <div class="audio-section d-flex align-items-center gap-3" style="flex-grow: 1;">
+            <!-- Hidden Audio Player -->
+            <audio class="d-none" id="audioPlayer" controls style="width: 100%; max-height: 40px; border-radius: 5px;"></audio>
+
+            <!-- Play Button -->
+            <button id="audioPlayerButton" class="btn btn-info p-2 rounded-circle d-flex justify-content-center align-items-center no-print" 
+                    style="height: 40px; width: 40px;" aria-label="Listen">
+                <i class="fa-solid fa-play" id="audioPlayerButtonPlay" style="font-size: 18px; color: #fff;"></i>
+            </button>
+        </div>
+    </div>
+
+    <input type="hidden" id="textToConvert" value="@Model.Text" />
+
+    <!-- Custom Script -->
+    <script src="~/Scripts/Feature/Text2Speech/Text2Speech.js"></script>
+}
